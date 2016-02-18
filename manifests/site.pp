@@ -53,6 +53,8 @@ node default {
     mode => '0644',
   }
   
+  include users
+  
   exec { "motd" :
     command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
     creates => "/etc/motd",
