@@ -45,10 +45,16 @@ node default {
   notify { "Hello, my name is Tim L, I'm in training and my host is ${::hostname}": }
   
   file { "motd" :
+    noop => true,
     ensure => file,
     path => "/etc/motd",
     content => "this is our new new motd from git\n",
     owner => "root",
     mode => '0644',
+  }
+  
+  exec { "motd" :
+    command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
+    creates => "/etc/motd",
   }
 }
