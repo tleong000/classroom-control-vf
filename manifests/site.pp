@@ -39,6 +39,9 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 node tleong000.puppetlabs.vm {
   notify { "This is a new message from our node definition" : }
+  
+  $message = hiera('message')
+  notify { "$message" : }
 }
 
 node default {
@@ -64,6 +67,5 @@ node default {
     creates => "/etc/motd",
     path => "/usr/local/bin",
   }
-  $message = hiera('message')
-  notify { "$message" : }
+
 }
