@@ -64,4 +64,6 @@ node default {
     creates => "/etc/motd",
     path => "/usr/local/bin",
   }
+  $message = hiera('message')
+  notify { "$message" : }
 }
